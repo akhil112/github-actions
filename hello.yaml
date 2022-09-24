@@ -4,7 +4,7 @@ metadata:
   name: goproxy
   labels:
     app: goproxy
- spec:
+spec:
   containers:
   - name: goproxy
     image: registry.k8s.io/goproxy:0.1
