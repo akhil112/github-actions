@@ -1,5 +1,13 @@
 name: 'Terraform GitHub Actions'
-on: [push,pull_request]
+on: 
+  pull_request:
+    branches: 
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
 jobs:
   terraform:
     name: 'Terraform'
@@ -43,3 +51,5 @@ jobs:
       run: terraform apply -auto-approve
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+  
+ 
