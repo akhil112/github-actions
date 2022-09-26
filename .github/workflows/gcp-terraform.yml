@@ -8,6 +8,16 @@ on:
       - synchronize
       - reopened
   push:
+  workflow_dispatch:
+    inputs:
+      flutter_version:
+        description: 'Framework version'
+        required: true
+        default: '2.5.3'
+      publish_artifacts:
+        description: 'Publish artifacts'
+        required: true
+        default: 'true'
 jobs:
   terraform:
     name: 'Terraform'
