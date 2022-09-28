@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "rules" {
-  project     = "aem-migr"
-  name        = "my-firewall-rule11"
+  project     = "aem-dev-363905"
+  name        = "dev-aem-firewall"
   network     = "default"
   description = "Creates firewall rule targeting tagged instances"
 

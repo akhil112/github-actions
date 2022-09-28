@@ -2,22 +2,20 @@ name: 'Terraform GitHub Actions'
 on: 
   pull_request:
     branches: 
-      - main
+      - stage
     types:
       - opened
       - synchronize
       - reopened
+    paths-ignore:
+      - ".github/*"
   push:
+    branches:
+      - stage
+    paths-ignore:
+      - ".github/*"
   workflow_dispatch:
-    inputs:
-      flutter_version:
-        description: 'Framework version'
-        required: true
-        default: '2.5.3'
-      publish_artifacts:
-        description: 'Publish artifacts'
-        required: true
-        default: 'true'
+    
 jobs:
   terraform:
     name: 'Terraform'
@@ -40,9 +38,9 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -var-file="stage-env/variables.tfvars"
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        GOOGLE_CREDENTIALS: ${{ secrets.stage_key }}
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
@@ -50,9 +48,9 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan
+      run: terraform plan -var-file="stage-env/variables.tfvars"
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        GOOGLE_CREDENTIALS: ${{ secrets.stage_key }}
 
   apply:
     needs: terraform
@@ -71,16 +69,16 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -var-file="stage-env/variables.tfvars"
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        GOOGLE_CREDENTIALS: ${{ secrets.stage_key }}
     # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      if: github.ref == 'refs/heads/stage' && github.event_name == 'push'
+      run: terraform apply -var-file="stage-env/variables.tfvars" -auto-approve
       env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        GOOGLE_CREDENTIALS: ${{ secrets.stage_key }}
 
 
 
