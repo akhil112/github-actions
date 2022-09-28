@@ -13,18 +13,18 @@ resource "google_compute_firewall" "rules" {
   target_tags = ["web"]
 }
 
-resource "google_compute_firewall" "rules1" {
-  project     = var.project_id
-  name        = var.firewall_name2
-  network     = var.network
-  description = "Creates firewall rule targeting tagged instances"
+# resource "google_compute_firewall" "rules1" {
+#   project     = var.project_id
+#   name        = var.firewall_name2
+#   network     = var.network
+#   description = "Creates firewall rule targeting tagged instances"
 
-  allow {
-    protocol = "all"
-    ports    = []
-  }
+#   allow {
+#     protocol = "all"
+#     ports    = []
+#   }
 
-  source_tags = ["foo"]
-  target_tags = ["web"]
-}
+#   source_tags = ["foo"]
+#   target_tags = ["web"]
+# }
 
