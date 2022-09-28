@@ -1,20 +1,14 @@
-resource "google_storage_bucket" "static-site" {
-  name          = "akhil-new-bucket-aem-dev"
-  location      = "EU"
-  force_destroy = true
+resource "google_compute_firewall" "rules" {
+  project     = var.project_id
+  name        = var.firewall_name
+  network     = var.network
+  description = "Creates firewall rule targeting tagged instances"
 
-  project = "aem-dev-363904"
-
-  uniform_bucket_level_access = true
-
-  website {
-    main_page_suffix = "index.html"
-    not_found_page   = "404.html"
+  allow {
+    protocol = "all"
+    ports    = []
   }
-  cors {
-    origin          = ["http://image-store.com"]
-    method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
-    response_header = ["*"]
-    max_age_seconds = 3600
-  }
+
+  source_tags = ["foo"]
+  target_tags = ["web"]
 }
