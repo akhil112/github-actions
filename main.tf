@@ -27,4 +27,4 @@ resource "google_compute_firewall" "rules1" {
   source_tags = ["foo"]
   target_tags = ["web"]
 }
-# dfd
+
