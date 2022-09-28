@@ -3,6 +3,8 @@ resource "google_storage_bucket" "static-site" {
   location      = "EU"
   force_destroy = true
 
+  project_id = "aem-dev-363904"
+
   uniform_bucket_level_access = true
 
   website {
