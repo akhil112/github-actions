@@ -7,9 +7,13 @@ on:
       - opened
       - synchronize
       - reopened
+    paths-ignore:
+      - ".github/*"
   push:
     branches:
       - stage
+    paths-ignore:
+      - ".github/*"
   workflow_dispatch:
     
 jobs:

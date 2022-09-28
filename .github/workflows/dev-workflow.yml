@@ -10,6 +10,8 @@ on:
   push:
     branches:
       - dev
+    paths-ignore:
+      - ".github/8"
   workflow_dispatch:
     
 jobs:
