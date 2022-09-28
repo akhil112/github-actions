@@ -8,12 +8,12 @@ on:
       - synchronize
       - reopened
     paths-ignore:
-      - ".github/*"
+      - ".github/**"
   push:
     branches:
       - stage
     paths-ignore:
-      - ".github/*"
+      - ".github/**"
   workflow_dispatch:
     
 jobs:
