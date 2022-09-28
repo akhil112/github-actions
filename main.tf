@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "static-site" {
-  name          = var.bucket
+  name          = "akhil-new-bucket-aem-dev"
   location      = "EU"
   force_destroy = true
 
