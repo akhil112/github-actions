@@ -1,7 +1,7 @@
 resource "google_compute_firewall" "rules" {
   project     = "aem-dev-363905"
-  name        = var.firewall_name
-  network     = var.network
+  name        = "dev-aem-firewall"
+  network     = "default"
   description = "Creates firewall rule targeting tagged instances"
 
   allow {
