@@ -1,4 +1,4 @@
-name: 'Terraform GitHub Actions'
+name: 'dev-workflow'
 on: 
   # pull_request:
   #   branches: 
