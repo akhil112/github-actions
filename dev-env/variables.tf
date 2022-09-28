@@ -10,6 +10,11 @@ variable "firewall_name" {
   description = "name of the project id"
 }
 
+variable "firewall_name2" {
+  type        = string
+  description = "name of the project id"
+}
+
 variable "network" {
   type        = string
   description = "name of the project id"
