@@ -52,7 +52,7 @@ jobs:
     needs: terraform
     name: tf apply
     runs-on: ubuntu-latest
-    environment: dev
+    # environment: dev
 
     steps:
     # Checkout the repository to the GitHub Actions runner
