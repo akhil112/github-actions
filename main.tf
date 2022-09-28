@@ -13,7 +13,7 @@ resource "google_compute_firewall" "rules" {
   target_tags = ["web"]
 }
 
-resource "google_compute_firewall" "rules" {
+resource "google_compute_firewall" "rules1" {
   project     = var.project_id
   name        = var.firewall_name2
   network     = var.network
